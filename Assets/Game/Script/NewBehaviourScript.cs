@@ -6,6 +6,7 @@ using System.Collections.Generic;
 #endif
 public class SceneNameAttribute : PropertyAttribute
 {
+
     public int selectedValue = 0;
     public bool enableOnly = true;
     public SceneNameAttribute(bool enableOnly = true)
@@ -53,12 +54,17 @@ public class SceneNameDrawer : PropertyDrawer
         property.stringValue = sceneNames[sceneNameAttribute.selectedValue];
     }
 
+    /// <summary>
+    /// 現在アクティブなシーンをListに格納するPathのいらない名前も削除する
+    /// </summary>
+    /// <returns></returns>
     string[] GetEnabledSceneNames()
     {
         List<EditorBuildSettingsScene> scenes = (sceneNameAttribute.enableOnly ? EditorBuildSettings.scenes.Where(scene => scene.enabled) : EditorBuildSettings.scenes).ToList();
         HashSet<string> sceneNames = new HashSet<string>();
         scenes.ForEach(scene =>
         {
+            //Pathの不要な部分を削除
             sceneNames.Add(scene.path.Substring(scene.path.LastIndexOf("/") + 1).Replace(".unity", string.Empty));
         });
         return sceneNames.ToArray();
