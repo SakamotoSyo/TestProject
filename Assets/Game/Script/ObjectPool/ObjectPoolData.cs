@@ -13,8 +13,13 @@ public class ObjectPoolData : ScriptableObject
     [SerializeField] ObjectData[] _data;
 
     [Serializable]
-    public class ObjectData 
+    public class ObjectData
     {
+        public GameObject PrefabObj => _prefabObj;
+        public PoolObjectType PoolObjectType => _poolType;
+        public int MaxCount => _objectMaxCount;
+
+
         [Header("オブジェクトの名前")]
         [SerializeField] string _name;
 

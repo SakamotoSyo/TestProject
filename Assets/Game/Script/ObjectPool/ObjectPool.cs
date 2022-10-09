@@ -19,6 +19,7 @@ public class ObjectPool : SingletonBehaviour<ObjectPool>
     protected override void OnAwake()
     {
         _poolCountIndex = 0;
+        CreatePool();
 
     }
 
