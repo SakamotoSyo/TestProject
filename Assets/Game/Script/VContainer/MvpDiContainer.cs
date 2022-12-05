@@ -46,7 +46,7 @@ public interface ISampleModel
 public class SampleModel : ISampleModel
 {
     public string GetRandomText()
-        => Guid.NewGuid().ToString();
+        => "Test";
 }
 
 public class SampleModelMock : ISampleModel
